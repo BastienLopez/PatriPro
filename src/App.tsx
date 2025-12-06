@@ -27,9 +27,27 @@ const App = () => {
     const redirect = sessionStorage.getItem('redirect');
     if (redirect) {
       sessionStorage.removeItem('redirect');
-      const path = new URL(redirect).pathname;
-      if (path !== window.location.pathname) {
-        window.history.replaceState(null, '', path);
+      try {
+        const redirectUrl = new URL(redirect);
+        let path = redirectUrl.pathname;
+        
+        // Remove the base path (/PatriPro/) to get the actual route
+        const basePath = import.meta.env.BASE_URL; // This will be '/PatriPro/' in production
+        if (path.startsWith(basePath)) {
+          path = '/' + path.substring(basePath.length);
+        }
+        
+        // Clean up the path
+        path = '/' + path.split('/').filter(p => p && p !== 'index.html').join('/');
+        if (path === '/') {
+          path = '/';
+        }
+        
+        if (path !== window.location.pathname) {
+          window.history.replaceState(null, '', path);
+        }
+      } catch (error) {
+        console.error('Error handling redirect:', error);
       }
     }
   }, []);
@@ -40,7 +58,7 @@ const App = () => {
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/portfolios" element={<Portfolios />} />

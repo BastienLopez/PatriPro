@@ -6,11 +6,16 @@
     <title>PatriPRO - Gestion de Patrimoine</title>
     <script>
       // SPA redirect for GitHub Pages
-      // Store the full path and redirect to root
+      // Extract the full path (everything after the domain)
+      var pathName = location.pathname;
+      // Store the full path to handle after index.html loads
       sessionStorage.setItem('redirect', location.href);
-      var base = location.pathname.split('/')[1];
-      var rootPath = '/' + base + '/';
-      location.replace(rootPath);
+      // Redirect to base path (index.html will handle the actual routing)
+      // For GitHub Pages: /PatriPro/ or /PatriPro/index.html
+      var basePath = pathName.split('/').slice(0, -1).join('/') + '/';
+      if (!pathName.endsWith('/') && !pathName.endsWith('index.html')) {
+        location.replace(basePath + 'index.html');
+      }
     </script>
   </head>
   <body>
