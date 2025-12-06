@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PatriPRO - Gestion de Patrimoine</title>
+    <meta name="description" content="PatriPRO - Application de gestion de patrimoine. Suivez vos comptes, portefeuilles, budget et emprunts en un seul endroit." />
+    <meta name="author" content="PatriPRO" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="canonical" href="https://patripro.app" />
+
+    <meta property="og:title" content="PatriPRO - Gestion de Patrimoine" />
+    <meta property="og:description" content="Application de gestion de patrimoine. Suivez vos comptes, portefeuilles, budget et emprunts." />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PatriPRO - Gestion de Patrimoine" />
+    <meta name="twitter:description" content="Application de gestion de patrimoine. Suivez vos comptes, portefeuilles, budget et emprunts." />
+
+    <!-- SPA redirect script for GitHub Pages -->
+    <script>
+      // Handle SPA routing on GitHub Pages
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

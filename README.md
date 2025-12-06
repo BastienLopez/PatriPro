@@ -1,2 +1,4 @@
-# PatriPro
-App de Gestion de Patrimoine
+# PatriPro - App de gestion de patrimoine
+
+npm i
+npm run dev
